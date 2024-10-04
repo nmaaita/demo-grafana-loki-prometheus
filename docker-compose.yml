@@ -1,4 +1,3 @@
-
 version: "3"
 
 services:
@@ -15,6 +14,8 @@ services:
         image: grafana/promtail:master
         volumes:
             - /var/log:/var/log
+            - /var/lib/docker/containers:/var/lib/docker/containers  # Ensure to include Docker container logs
+            - ./promtail-config.yaml:/etc/promtail/docker-config.yaml  # Mount your config file
         command: -config.file=/etc/promtail/docker-config.yaml
         networks:
             - promtail-loki
