@@ -16,5 +16,6 @@ scrape_configs:
         labels:
           job: docker
           __path__: /var/lib/docker/containers/*/*.log
-          __docker_container_name__: "{{ .ContainerName }}"
-          __service__: "{{ .ContainerName }}"  # This is the meaningful label
+          __docker_container_name__: "{{ .ContainerName }}"  # Existing container name label
+          __service__: "{{ .ContainerName }}"  # Adding a service label based on the container name
+          __name__: "{{ .ContainerName }}"  # Override the default __name__ label with container name
