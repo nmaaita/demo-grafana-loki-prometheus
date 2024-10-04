@@ -17,3 +17,5 @@ scrape_configs:
           job: docker
           __path__: /var/lib/docker/containers/*/*.log
           __docker_container_name__: "{{ .ContainerName }}"
+          __container_id__: "{{ .ContainerID }}"  # Adding container ID label
+          __app_name__: "httpd"                   # Custom app label, adjust as needed
