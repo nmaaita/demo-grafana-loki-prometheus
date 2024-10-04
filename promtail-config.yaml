@@ -18,11 +18,3 @@ scrape_configs:
           __path__: /var/lib/docker/containers/*/*.log
           __docker_container_name__: "{{ .ContainerName }}"
           __service__: "{{ .ContainerName }}"  # Adding a service label based on the container name
-
-    # Optional: Adding label_configs for dynamic labeling
-    label_configs:
-      - action: replace
-        source: __docker_container_name__
-        target: __service__
-        regex: '(.*)'
-        replacement: '${1}'
