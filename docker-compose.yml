@@ -1,11 +1,10 @@
+
 version: "3"
 
 services:
     loki:
-        image: grafana/loki:2.5.0  # Use a stable version
+        image: grafana/loki:master
         command: -config.file=/etc/loki/local-config.yaml
-        volumes:
-            - ./loki:/loki  # Persistent storage for Loki
         networks:
             - grafana-loki
             - promtail-loki
@@ -13,11 +12,10 @@ services:
     promtail:
         depends_on:
             - loki
-        image: grafana/promtail:2.5.0  # Use a stable version
+        image: grafana/promtail:master
         volumes:
             - /var/log:/var/log
-            - ./promtail-config.yaml:/etc/promtail/config.yml  # Mount the config file
-        command: -config.file=/etc/promtail/config.yml
+        command: -config.file=/etc/promtail/docker-config.yaml
         networks:
             - promtail-loki
 
